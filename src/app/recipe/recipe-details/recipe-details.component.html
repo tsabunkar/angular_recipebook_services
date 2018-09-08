@@ -9,6 +9,18 @@
     <h3>{{recipeObj?.name}}</h3>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-xs-12">
+    Description : {{recipeObj?.description}}
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    View : <img [src]="recipeObj?.imagePath" alt="" height="100px" width="100px">
+  </div>
+</div>
+<br>
 <div class="row">
   <div class="col-xs-12">
     <div class="btn-group" dropdown_customedirective>
@@ -28,18 +40,10 @@
     </div>
   </div>
 </div>
+<br>
 <div class="row">
   <div class="col-xs-12">
-    Description : {{recipeObj?.description}}
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    Ingredients : <img [src]="recipeObj?.imagePath" alt="" height="100px" width="100px">
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
+    Ingredients list used for this recipe :
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let item of recipeObj?.ingredients">
         {{item.name}} - {{item.amount}}

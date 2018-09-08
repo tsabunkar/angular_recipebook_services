@@ -15,15 +15,16 @@ export class RecipeService {
             'https://images.media-allrecipes.com/images/56589.png',
             [
                 new Ingredient('Veges', 1),
-                new Ingredient('FrenchFires', 20)
+                new Ingredient('tomato', 20),
+                new Ingredient('chilly', 5),
             ]),
         new Recipe('Gobi Manchuri ', 'Gobi Manchuri is an indian cum chinse dish',
             'http://s3.amazonaws.com/appforest_uf/f1486610188974x481748790945857800/Semi_Gravy_gobi__manchurian.jpg',
             [
-                new Ingredient('bread', 1),
-                new Ingredient('bun', 20),
-                new Ingredient('milk', 45),
-                new Ingredient('sugar', 90)
+                new Ingredient('gobi', 1),
+                new Ingredient('tomato', 20),
+                new Ingredient('oil', 45),
+                new Ingredient('green piece', 90)
             ])
     ];
 
