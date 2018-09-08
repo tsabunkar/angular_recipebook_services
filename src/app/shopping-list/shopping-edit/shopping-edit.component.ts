@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Ingredient } from '../../shared/models/ingredient.model';
+import { ShoppingListService } from '../shopping-service/shopping.service';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -8,7 +9,7 @@ import { Ingredient } from '../../shared/models/ingredient.model';
 })
 export class ShoppingEditComponent implements OnInit {
 
-  constructor() { }
+  constructor(private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
   }
@@ -16,14 +17,25 @@ export class ShoppingEditComponent implements OnInit {
   @ViewChild('nameInput') nameVara: ElementRef;
   @ViewChild('amountInput') amountVara: ElementRef;
 
-  @Output('sendIngredientObjFrmC2P_customEvent') ingredientObj = new EventEmitter<Ingredient>();
+  /* 
+    @Output('sendIngredientObjFrmC2P_customEvent') ingredientObj = new EventEmitter<Ingredient>();
+  
+    onAddInShoppingCart() {
+      // console.log(this.nameVara.nativeElement.value);
+      // console.log(this.amountVara.nativeElement.value);
+      const ingredientName =  this.nameVara.nativeElement.value
+      const ingredientAmount =  this.amountVara.nativeElement.value
+      const newIngredient = new Ingredient(ingredientName, ingredientAmount);
+      this.ingredientObj.emit(newIngredient)
+  
+    } 
+    */
 
   onAddInShoppingCart() {
-    /*     console.log(this.nameVara.nativeElement.value);
-        console.log(this.amountVara.nativeElement.value); */
-    const myObject = { name: this.nameVara.nativeElement.value, amount: this.amountVara.nativeElement.value }
-    this.ingredientObj.emit(myObject)
-
+    const ingredientName = this.nameVara.nativeElement.value
+    const ingredientAmount = this.amountVara.nativeElement.value
+    const newIngredient = new Ingredient(ingredientName, ingredientAmount);
+    this.shoppingListService.addIngredientsElementsToArray(newIngredient)
   }
 
 }
