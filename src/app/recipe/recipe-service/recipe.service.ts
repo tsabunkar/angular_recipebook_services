@@ -1,16 +1,30 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from '../models/recipe.model';
+import { Ingredient } from '../../shared/models/ingredient.model';
+import { ShoppingListService } from '../../shopping-list/shopping-service/shopping.service';
 
 @Injectable()
 export class RecipeService {
     recipeSelected_CustomEvent_fromC2S = new EventEmitter<Recipe>();
 
-    constructor() { }
+    constructor(private shoppingListService: ShoppingListService) { }
 
     //making this recipesArray as private, so that this property will be encapsulated from outside 
     private recipesArray: Recipe[] = [
-        new Recipe('Pasta', 'Pasta dish is made of sunfest pasta', 'https://images.media-allrecipes.com/images/56589.png'),
-        new Recipe('Gobi Manchuri ', 'Gobi Manchuri is an indian cum chinse dish', 'http://s3.amazonaws.com/appforest_uf/f1486610188974x481748790945857800/Semi_Gravy_gobi__manchurian.jpg')
+        new Recipe('Pasta', 'Pasta dish is made of sunfest pasta',
+            'https://images.media-allrecipes.com/images/56589.png',
+            [
+                new Ingredient('Veges', 1),
+                new Ingredient('FrenchFires', 20)
+            ]),
+        new Recipe('Gobi Manchuri ', 'Gobi Manchuri is an indian cum chinse dish',
+            'http://s3.amazonaws.com/appforest_uf/f1486610188974x481748790945857800/Semi_Gravy_gobi__manchurian.jpg',
+            [
+                new Ingredient('bread', 1),
+                new Ingredient('bun', 20),
+                new Ingredient('milk', 45),
+                new Ingredient('sugar', 90)
+            ])
     ];
 
     //getters
@@ -19,4 +33,7 @@ export class RecipeService {
         //array
     }
 
+    addIngredientToShoppingList(ingredientArrVal: Ingredient[]) {
+        this.shoppingListService.addIngredientsArrayToExistingIngredientArrayInShoppingList(ingredientArrVal)
+    }
 }
